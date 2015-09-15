@@ -8,5 +8,13 @@ int main(void){
 	char nome[] = {'J','o','n','a','t','h','a','n'};
 	// não há necessidade de & pois um vetor é um ponteiro
 	printf("%s\n", nome);
+
+	/*
+	 * Dessa forma não se torna necessário guardar letra por letra
+	 */
+
+	char nome2[] = "Jonathan";
+	// não há necessidade de & pois um vetor é um ponteiro
+	printf("%s\n", nome2);
 	return 0;
 }
