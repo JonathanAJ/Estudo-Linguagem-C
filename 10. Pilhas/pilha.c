@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+typedef struct lista Lista;
 
 typedef struct lista{
 	int info;
@@ -19,7 +20,7 @@ void pilhaLibera(Pilha* p);
 void pilhaImprime(Pilha* p);
 
 
-void main(void){
+int main(void){
 	
 	Pilha* p;
 	p = criaPilha();
@@ -29,9 +30,10 @@ void main(void){
 	pushPilha(p, 40);
 	pushPilha(p, 50);
 	pushPilha(p, 60);
-	popPilha(p);
+	printf("Retirado: %d\n", popPilha(p));
 	pilhaImprime(p);
-
+	pilhaLibera(p);
+	
 	return 0;
 }
 
@@ -52,13 +54,14 @@ void pushPilha(Pilha* p, int info){
 
 int popPilha(Pilha* p){
 	if(pilhaVazia(p)){
-		printf("Pilha vazia!");
+		printf("Pilha vazia!\n");
 		exit(1);
 	}
-
 	Lista* aux = p->prime->prox;
+	int info = p->prime->info;
 	free(p->prime);
 	p->prime = aux;
+	return info;
 }
 
 void pilhaImprime(Pilha* p){
