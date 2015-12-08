@@ -19,7 +19,7 @@ int main(void){
 	if(N>0){
 		transfere(N, org, des, aux);
 	}else{
-		printf("\nDigite um número maior que 0.");
+		printf("\nDigite um número maior que 0.\nx'");
 	}
 	return 0;
 }
