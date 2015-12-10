@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 /*
   Criando protótipo do tipo Lista
 */
@@ -58,8 +59,24 @@ int main(void){
 	  para fazer os devidos movimentos da torre.
 	*/
 	populaPilha(org, N);
+	/*
+	  Inicializando contador para verificar o tempo
+	  de execução da função transfere recursiva
+	*/
+	// inicializando tipo clock
+	clock_t inicio, fim;
+	// tempo até aqui
+	inicio = clock();
+	/*
+	  Inicializando função que transfere os discos.
+	*/
 	transfere(N, org, des, aux);
-	printf("\n");
+	// tempo até aqui
+	fim = clock();
+	// cálculo do tempo
+	double total;
+	total = (double) (fim - inicio)/CLOCKS_PER_SEC;
+	printf("\n+++++> Tempo de execução foi de %.5f segundos.\n\n", total);
 	return 0;
 }
 
