@@ -111,6 +111,7 @@ void transfere(int N, Pilha* org, Pilha* des, Pilha* aux){
 }
 
 void moveDiscoEntreDoisPontos(Pilha *org, Pilha *des, Pilha* aux){
+	// Para saber qual o topo da pilha
     int poloUmTopo = popPilha(org);
     int poloDoisTopo = popPilha(des);
     // Quando o PoloUm estiver vazio
