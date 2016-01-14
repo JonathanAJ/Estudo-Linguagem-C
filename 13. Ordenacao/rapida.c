@@ -42,6 +42,9 @@ void ordenaRapida(int n, int *v){
 			while(v[iDireito]>pivo)
 				iDireito--;
 			if(iEsquerdo<iDireito){
+				/*
+				 * Troca dos elementos
+				 */
 				int tmp = v[iEsquerdo];
 				v[iEsquerdo] = v[iDireito];
 				v[iDireito] = tmp;
