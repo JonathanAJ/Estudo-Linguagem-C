@@ -12,9 +12,9 @@ typedef struct arvore Arvore;
 /*
  * Protótipos
  */
-Arvore* criaArvoreVazia(void);
-Arvore* criaArvore(int arv_inf, Arvore *arv_esq, Arvore *arv_dir);
-void mostraArvore(Arvore *arv);
+Arvore* criaNoVazio(void);
+Arvore* criaNo(int arv_inf, Arvore *arv_esq, Arvore *arv_dir);
+void arvoreImprime(Arvore *arv);
 /*
  *	Árvore binária cheia representada
  *	pelo seguinte modelo:
@@ -26,35 +26,35 @@ void mostraArvore(Arvore *arv);
  *		4   5 6   7
  */
 int main(void){
-	Arvore *arv_my = criaArvore(1,
-						criaArvore(2, 
-							criaArvore(4,
-								criaArvoreVazia(),
-								criaArvoreVazia()
+	Arvore *arvore = criaNo(1,
+						criaNo(2, 
+							criaNo(4,
+								criaNoVazio(),
+								criaNoVazio()
 							),
-							criaArvore(5,
-								criaArvoreVazia(),
-								criaArvoreVazia()
+							criaNo(5,
+								criaNoVazio(),
+								criaNoVazio()
 							)
 						),
-						criaArvore(3,
-							criaArvore(6,
-								criaArvoreVazia(),
-								criaArvoreVazia()
+						criaNo(3,
+							criaNo(6,
+								criaNoVazio(),
+								criaNoVazio()
 							),
-							criaArvore(7,
-								criaArvoreVazia(),
-								criaArvoreVazia()
+							criaNo(7,
+								criaNoVazio(),
+								criaNoVazio()
 							)
 						)
 					);
-	mostraArvore(arv_my);
+	arvoreImprime(arvore);
 	return 0;
 }
 /*
  * Cria e retorna uma árvore vazia
  */
-Arvore* criaArvoreVazia(void){
+Arvore* criaNoVazio(void){
 	return NULL;
 }
 /*
@@ -62,7 +62,7 @@ Arvore* criaArvoreVazia(void){
  * duas outras árvores esquerda e direita, retorna o valor
  * atualizado para não se perder quando a função terminar.
  */
-Arvore* criaArvore(int arv_inf, Arvore *arv_esq, Arvore *arv_dir){
+Arvore* criaNo(int arv_inf, Arvore *arv_esq, Arvore *arv_dir){
 	Arvore *arv_new = (Arvore*) malloc(sizeof(Arvore));
 	arv_new->arv_inf = arv_inf;
 	arv_new->arv_esq = arv_esq;
@@ -72,10 +72,10 @@ Arvore* criaArvore(int arv_inf, Arvore *arv_esq, Arvore *arv_dir){
 /*
  * Função para mostrar a árvore em "pré-ordem".
  */
-void mostraArvore(Arvore *arv){
+void arvoreImprime(Arvore *arv){
 	if(arv!=NULL){
 		printf("Nó: %d\n", arv->arv_inf);
-		mostraArvore(arv->arv_esq);
-		mostraArvore(arv->arv_dir);
+		arvoreImprime(arv->arv_esq);
+		arvoreImprime(arv->arv_dir);
 	}
 }
