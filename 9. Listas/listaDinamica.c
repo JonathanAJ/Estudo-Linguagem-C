@@ -35,6 +35,7 @@ int main(void){
 	listaQntd(l);
 	listaPosicao(l, 33);
 	listaLibera(l);
+	listaImprime(l);
 	return 0;
 }
 
