@@ -21,8 +21,8 @@ int arvoreVazia(Arvore* arvore);
 void arvoreImprime(Arvore* arvore);
 void arvorePertence(int info, Arvore* arvore);
 int arvoreVerificaPertence(int info, Arvore* arvore);
-int retornaNivelUtil(Arvore* arvore, int info, int nivel);
-void retornaNivel(int info, Arvore* arvore);
+int arvoreVerificaNivel(Arvore* arvore, int info, int nivel);
+void arvoreNivel(int info, Arvore* arvore);
 /*
  *	Árvore binária cheia representada
  *	pelo seguinte modelo:
@@ -56,9 +56,14 @@ int main(void){
 							)
 						)
 					);
+
 	arvoreImprime(arvore);
+
 	arvorePertence(3, arvore);
-	retornaNivel(5, arvore);
+	arvorePertence(8, arvore);
+
+	arvoreNivel(5, arvore);
+	
 	liberaNo(arvore);
 	return 0;
 }
@@ -91,6 +96,10 @@ void liberaNo(Arvore* no){
 	}
 }
 
+int arvoreVazia(Arvore* arvore){
+	return arvore == NULL;
+}
+
 void arvoreImprime(Arvore* arvore){
 	if(!arvoreVazia(arvore)){
 		printf("Info: %d\n", arvore->info);
@@ -118,25 +127,29 @@ int arvoreVerificaPertence(int info, Arvore* arvore){
 	}
 }
 
-int arvoreVazia(Arvore* arvore){
-	return arvore==NULL;
+void arvoreNivel(int info, Arvore* arvore){
+	if(arvoreVazia(arvore)){
+		printf("Árvore vazia!\n");
+		printf("Nível/Posição é -1\n");
+	}
+	else if(!arvoreVerificaPertence(info, arvore)){
+		printf("%d não pertence.\n", info);
+	}else{
+		printf("Nível/Posição de %d é %d.\n", info, arvoreVerificaNivel(arvore, info, 0));
+	}
 }
 
-int retornaNivelUtil(Arvore* arvore, int info, int nivel){
+int arvoreVerificaNivel(Arvore* arvore, int info, int nivel){
     if (arvore == NULL)
         return 0;
  
     if (arvore->info == info)
         return nivel;
  
-    int nivelBaixo = retornaNivelUtil(arvore->esq, info, nivel+1);
-    if (nivelBaixo != 0)
-        return nivelBaixo;
+    int nivelRetorno = arvoreVerificaNivel(arvore->esq, info, nivel+1);
+    if (nivelRetorno != 0)
+        return nivelRetorno;
  
-    nivelBaixo = retornaNivelUtil(arvore->dir, info, nivel+1);
-    return nivelBaixo;
-}
-
-void retornaNivel(int info, Arvore* arvore){
-	printf("Nível/Posição de %d é %d.\n", info, retornaNivelUtil(arvore, info, 0));
+    nivelRetorno = arvoreVerificaNivel(arvore->dir, info, nivel+1);
+    return nivelRetorno;
 }
